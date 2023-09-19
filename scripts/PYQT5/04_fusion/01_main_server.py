@@ -17,19 +17,17 @@ class ChatServer(QWidget):
 
         self.clients = []
 
-        self.running = True
-        self.thread = threading.Thread(target=self.accept_connections)
-        self.thread.daemon = True  # 주 스레드가 종료될 때 함께 종료됩니다.
-        self.thread.start()
+        self.running = False
+
 
     def initUI(self):
         self.log_window = QTextEdit(self)
         self.log_window.setReadOnly(True)
 
-        self.status_label = QLabel('Server is running...', self)
+        self.status_label = QLabel('Server is stopped', self)
 
         self.start_button = QPushButton('Start Server', self)
-        self.start_button.clicked.connect(self.start_server)
+        self.start_button.clicked.connect(self.toggle_server)
 
         layout = QVBoxLayout()
         layout.addWidget(self.status_label)
@@ -39,13 +37,34 @@ class ChatServer(QWidget):
         self.setLayout(layout)
 
     def closeEvent(self, event):
-        """어플리케이션 종료 이벤트를 오버라이드하여 소켓과 스레드를 종료합니다."""
         self.running = False
-        self.server.close()
+        if self.server:
+            self.server.close()
         event.accept()
 
-    def start_server(self):
-        self.log_window.append('Server started!')
+    def toggle_server(self):
+        if self.running:
+            # 서버 종료
+            self.running = False
+            self.server.close()  # 이 부분에서 서버 종료 처리를 하면 좋습니다.
+            self.start_button.setText("Start Server")
+            self.log_window.append('Server stopped!')
+            self.status_label.setText('Server is stopped.')
+
+        else:
+            # 서버 시작
+            self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.server.bind(('0.0.0.0', 8080))
+            self.server.listen(300)
+            
+            self.running = True
+            self.thread = threading.Thread(target=self.accept_connections)
+            self.thread.daemon = True  # 주 스레드가 종료될 때 함께 종료됩니다.
+            self.thread.start()
+
+            self.start_button.setText("Stop Server")
+            self.log_window.append('Server started!')
+            self.status_label.setText('Server is running...')
 
     def accept_connections(self):
         while self.running:

@@ -15,6 +15,10 @@ class ColorSliderWidget(QWidget):
         self.g_slider = QSlider(Qt.Horizontal)
         self.b_slider = QSlider(Qt.Horizontal)
 
+        self.r_slider.setRange(0, 255)  # Set the range for red slider
+        self.g_slider.setRange(0, 255)  # Set the range for green slider
+        self.b_slider.setRange(0, 255)  # Set the range for blue slider
+
         layout.addWidget(self.r_slider)
         layout.addWidget(self.g_slider)
         layout.addWidget(self.b_slider)

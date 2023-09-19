@@ -123,7 +123,7 @@ if __name__ == "__main__":
 서브 위젯 생성
 --------------
 
-scripts/PYQT2/02_sub_widget/01_many_widget/main.py
+### scripts/PYQT2/02_sub_widget/01_many_widget/main.py
 
 - 이 예제에서는 다양한 PyQt5 서브 위젯을 소개합니다.
 
@@ -303,7 +303,7 @@ if __name__ == '__main__':
 
 </br>
 
-화면전화: 스택 위젯 활용
+화면전환: 스택 위젯 활용
 -----------------------
 
 - **화면 전환**: 스택 위젯 활용하여 여러 화면을 전환하는 방법

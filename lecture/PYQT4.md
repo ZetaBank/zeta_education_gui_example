@@ -54,7 +54,8 @@ if __name__ == '__main__':
 
 </br>
 
-01_key_pressed/02_move_rectangle/main.py:
+### scripts/PYQT4/01_key_pressed/02_move_rectangle/main.py:
+
 이 예제는 사용자가 키보드의 A, S, W, D 키를 눌렀을 때 사각형을 상하좌우로 움직이게 하는 프로그램입니다.
 
 - **RectangleMover** 클래스는 **QGraphicsView** 위에 파란색 사각형을 그리고, 사용자의 키보드 입력에 따라 사각형을 움직입니다.
@@ -151,7 +152,7 @@ self.view.setSceneRect(0, 0, 800, 600)
 ------------
 
 
-### scripts/PYQT4/01_key_pressed/02_mouse_clicked/main.py
+### scripts/PYQT4/02_mouse_clicked/main.py
 ```python
 # -*- coding: utf-8 -*-
 
@@ -217,7 +218,7 @@ if __name__ == '__main__':
 
 PyQt는 키보드와 마우스 이벤트를 동시에 감지하고 처리할 수 있습니다. 이 예제에서는 사용자가 'A' 키를 누른 상태에서 마우스를 클릭하면 화면에 표시되는 메시지가 변경됩니다.
 
-### scripts/PYQT4/01_key_pressed/03_key_and_mouse_detection/main.py
+### scripts/PYQT4/03_key_and_mouse_detection/main.py
 
 ```python
 # -*- coding: utf-8 -*-
@@ -436,7 +437,7 @@ if __name__ == '__main__':
 
 - 위젯이나 다른 객체에서 발생하는 이벤트(신호)를 처리하는 함수(슬롯)에 연결할 수 있습니다.
 
-### scripts/PYQT4/05_timer/main.py
+### scripts/PYQT4/06_signal_and_slot/main.py
 
 ```python
 # -*- coding: utf-8 -*-
@@ -446,20 +447,20 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QTextEdit
 from PyQt5.QtCore import Qt, pyqtSignal
 
 class SignalTextEdit(QTextEdit):
-    a_key_pressed = pyqtSignal()
+    b_key_pressed = pyqtSignal()
 
     def __init__(self, parent=None):
         super(SignalTextEdit, self).__init__(parent)
-        self.a_key_pressed.connect(self.on_a_key_pressed)
+        self.b_key_pressed.connect(self.on_b_key_pressed)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_A:
-            self.a_key_pressed.emit()
+        if event.key() == Qt.Key_B:
+            self.b_key_pressed.emit()
         else:
             super(SignalTextEdit, self).keyPressEvent(event)
 
-    def on_a_key_pressed(self):
-        self.append("You pressed the 'A' key!")
+    def on_b_key_pressed(self):
+        self.append("You pressed the 'B' key!")
 
 class SignalApp(QMainWindow):
     def __init__(self):
@@ -479,6 +480,7 @@ if __name__ == '__main__':
     window = SignalApp()
     window.show()
     sys.exit(app.exec_())
+
 ```
 이 스크립트는 PyQt5의 신호 및 슬롯 메커니즘을 활용하여 키보드 입력을 감지하는 애플리케이션을 구현한 것입니다. 사용자가 'B' 키를 누르면 텍스트 영역에 메시지가 추가됩니다.
 

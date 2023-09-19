@@ -103,94 +103,94 @@ class MainWindow(QMainWindow):
 
     def apply_styles(self):
         style = """
-            QLineEdit {
-                background-color: #333;
-                color: #f1c40f;
-                border: 2px solid #f39c12;
-                border-radius: 5px;
-                padding: 5px;
-                margin: 5px;
-            }
-            QTextEdit {
-                background-color: #333;
-                color: #f1c40f;
-                border: 2px solid #f39c12;
-                border-radius: 5px;
-                padding: 5px;
-                margin: 5px;
-            }
-            QRadioButton {
-                spacing: 5px;
-                color: #f1c40f;
-                margin: 5px;
-            }
-            QCheckBox {
-                spacing: 5px;
-                color: #f1c40f;
-                margin: 5px;
-            }
-            QComboBox {
-                background-color: #333;
-                color: #f1c40f;
-                border: 2px solid #f39c12;
-                border-radius: 5px;
-                padding: 5px;
-                margin: 5px;
-            }
-            QSlider::groove:horizontal {
-                background: #f39c12;
-                height: 5px;
-                border-radius: 2px;
-            }
-            QSlider::handle:horizontal {
-                background: #e74c3c;
-                width: 18px;
-                height: 18px;
-                border-radius: 9px;
-                margin: -7px 0;
-            }
-            QDial::groove {
-                background: #f39c12;
-            }
-            QDial::handle {
-                background: #e74c3c;
-                width: 10px;
-                height: 10px;
-                border-radius: 5px;
-            }
-            QDateEdit, QTimeEdit, QDateTimeEdit {
-                background-color: #333;
-                color: #f1c40f;
-                border: 2px solid #f39c12;
-                border-radius: 5px;
-                padding: 5px;
-                margin: 5px;
-            }
-            QProgressBar {
-                text-align: center;
-                border: 2px solid #f39c12;
-                border-radius: 5px;
-            }
-            QProgressBar::chunk {
-                background-color: #e74c3c;
-                width: 20px;
-            }
-            QPushButton {
-                background-color: #e74c3c;
-                border: none;
-                border-radius: 5px;
-                padding: 10px 20px;
-                color: white;
-                margin: 5px;
-                font-size: 16px;
-            }
-            QPushButton:hover {
-                background-color: #c0392b;
-            }
-            QPushButton:pressed {
-                background-color: #a93226;
-            }
-        """
+                QLineEdit {
+                    background-color: #2c3e50;
+                    color: #f7dc6f;
+                    border: 2px solid #27ae60;
+                    border-radius: 5px;
+                    padding: 5px;
+                    margin: 5px;
+                }
+                QTextEdit {
+                    background-color: #2980b9;
+                    color: #f4d313;
+                    border: 2px solid #8e44ad;
+                    border-radius: 5px;
+                    padding: 5px;
+                    margin: 5px;
+                }
+                QRadioButton {
+                    spacing: 5px;
+                    color: #f39c12;
+                    margin: 5px;
+                }
+                QCheckBox {
+                    spacing: 5px;
+                    color: #e74c3c;
+                    margin: 5px;
+                }
+                QComboBox {
+                    background-color: #c0392b;
+                    color: #ecf0f1;
+                    border: 2px solid #3498db;
+                    border-radius: 5px;
+                    padding: 5px;
+                    margin: 5px;
+                }
+                QSlider::groove:horizontal {
+                    background: #1abc9c;
+                    height: 5px;
+                    border-radius: 2px;
+                }
+                QSlider::handle:horizontal {
+                    background: #d35400;
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 9px;
+                    margin: -7px 0;
+                }
+                QDial::groove {
+                    background: #f1c40f;
+                }
+                QDial::handle {
+                    background: #c74b3b;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 5px;
+                }
+                QDateEdit, QTimeEdit, QDateTimeEdit {
+                    background-color: #8e44ad;
+                    color: #f0e68c;
+                    border: 2px solid #2e8b57;
+                    border-radius: 5px;
+                    padding: 5px;
+                    margin: 5px;
+                }
+                QProgressBar {
+                    text-align: center;
+                    border: 2px solid #4682b4;
+                    border-radius: 5px;
+                }
+                QProgressBar::chunk {
+                    background-color: #d2b48c;
+                    width: 20px;
+                }
+                QPushButton {
+                    background-color: #5f9ea0;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    color: #daa520;
+                    margin: 5px;
+                    font-size: 16px;
+                }
+                QPushButton:hover {
+                    background-color: #20b2aa;
+                }
+                QPushButton:pressed {
+                    background-color: #556b2f;
+                }
+            """
 
         self.setStyleSheet(style)
 

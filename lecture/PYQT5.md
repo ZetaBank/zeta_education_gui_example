@@ -70,6 +70,10 @@ class ColorSliderWidget(QWidget):
         self.g_slider = QSlider(Qt.Horizontal)
         self.b_slider = QSlider(Qt.Horizontal)
 
+        self.r_slider.setRange(0, 255)  # Set the range for red slider
+        self.g_slider.setRange(0, 255)  # Set the range for green slider
+        self.b_slider.setRange(0, 255)  # Set the range for blue slider
+
         layout.addWidget(self.r_slider)
         layout.addWidget(self.g_slider)
         layout.addWidget(self.b_slider)
@@ -326,7 +330,7 @@ print("Done!")
 
 - 두 함수는 동시에 실행되므로, 숫자와 알파벳이 교차하여 출력됩니다.
 
-- **thread1.join()**과 **thread2.join()**은 주 스레드가 해당 스레드들이 모두 종료될 때까지 기다리게 합니다.
+- <b>thread1.join()</b>과 <b>thread2.join()</b>은 주 스레드가 해당 스레드들이 모두 종료될 때까지 기다리게 합니다.
 
 </br>
 

@@ -53,32 +53,27 @@ class SpinBoxStyled(QMainWindow):
             }
 
             QSpinBox::up-button {
+                image: url('_icon/up.png');
+                subcontrol-origin: border;
+                subcontrol-position: top right;
+                
+                border-width: 1px;
                 width: 50px;
                 height: 50px;
-                border: none;
                 background: #2ecc71;
             }
 
             QSpinBox::down-button {
+                image: url('_icon/down.png');
+                subcontrol-origin: border;
+                subcontrol-position: bottom right;
+                
+                border-width: 1px;
                 width: 50px;
                 height: 50px;
-                border: none;
                 background: #e74c3c;
             }
 
-            QSpinBox::up-arrow {
-                width: 15px;
-                height: 15px;
-                border: solid black;
-                border-width: 0 7px 7px 0;
-            }
-
-            QSpinBox::down-arrow {
-                width: 15px;
-                height: 15px;
-                border: solid white;
-                border-width: 0 7px 7px 0;
-            }
         """
         self.spin_box.setStyleSheet(style)
 

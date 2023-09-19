@@ -73,7 +73,7 @@ PyQt5 환경 설정 및 설치
 4. PyQt5 설치
     cmd 창에서
     ```bash
-    pip install python-qt5
+    pip2 install python-qt5
     ```
 
 5. vscode에 python, qt for python 확장 프로그램 설치 
