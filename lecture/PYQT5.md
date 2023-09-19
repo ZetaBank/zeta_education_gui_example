@@ -469,19 +469,17 @@ class ChatServer(QWidget):
 
         self.clients = []
 
-        self.running = True
-        self.thread = threading.Thread(target=self.accept_connections)
-        self.thread.daemon = True  # 주 스레드가 종료될 때 함께 종료됩니다.
-        self.thread.start()
+        self.running = False
+
 
     def initUI(self):
         self.log_window = QTextEdit(self)
         self.log_window.setReadOnly(True)
 
-        self.status_label = QLabel('Server is running...', self)
+        self.status_label = QLabel('Server is stopped', self)
 
         self.start_button = QPushButton('Start Server', self)
-        self.start_button.clicked.connect(self.start_server)
+        self.start_button.clicked.connect(self.toggle_server)
 
         layout = QVBoxLayout()
         layout.addWidget(self.status_label)
@@ -491,13 +489,34 @@ class ChatServer(QWidget):
         self.setLayout(layout)
 
     def closeEvent(self, event):
-        """어플리케이션 종료 이벤트를 오버라이드하여 소켓과 스레드를 종료합니다."""
         self.running = False
-        self.server.close()
+        if self.server:
+            self.server.close()
         event.accept()
 
-    def start_server(self):
-        self.log_window.append('Server started!')
+    def toggle_server(self):
+        if self.running:
+            # 서버 종료
+            self.running = False
+            self.server.close()  # 이 부분에서 서버 종료 처리를 하면 좋습니다.
+            self.start_button.setText("Start Server")
+            self.log_window.append('Server stopped!')
+            self.status_label.setText('Server is stopped.')
+
+        else:
+            # 서버 시작
+            self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.server.bind(('0.0.0.0', 8080))
+            self.server.listen(300)
+            
+            self.running = True
+            self.thread = threading.Thread(target=self.accept_connections)
+            self.thread.daemon = True  # 주 스레드가 종료될 때 함께 종료됩니다.
+            self.thread.start()
+
+            self.start_button.setText("Stop Server")
+            self.log_window.append('Server started!')
+            self.status_label.setText('Server is running...')
 
     def accept_connections(self):
         while self.running:
@@ -537,6 +556,7 @@ app = QApplication(sys.argv)
 server_window = ChatServer()
 server_window.show()
 sys.exit(app.exec_())
+
 ```
 
 
@@ -556,8 +576,6 @@ sys.exit(app.exec_())
   
   - 상태 라벨: 서버의 현재 상태를 나타냅니다.
   
-  - 서버 시작 버튼: 실제로는 서버를 시작하지 않지만, 예제의 목적상 UI에 포함되어 있습니다.
-
 - 멀티 스레딩:
 
   - 서버는 threading 모듈을 사용하여 별도의 스레드에서 클라이언트의 연결을 수락하고 각 클라이언트를 처리합니다.
@@ -569,6 +587,22 @@ sys.exit(app.exec_())
   - **broadcast** 함수는 연결된 모든 클라이언트에게 메시지를 전송합니다.
   
   - 메시지 발신자는 메시지 수신자 목록에서 제외됩니다.
+
+- 클라이언트 처리:
+
+  - **연결 수락**: 서버가 새로운 클라이언트의 연결을 기다리는 **accept_connections** 함수입니다. 연결이 수립되면 해당 클라이언트의 정보를 로그 창에 출력하고, 클라이언트를 처리하기 위한 별도의 스레드를 시작합니다.
+
+  - **클라이언트와 소통**: **handle_client** 함수는 연결된 클라이언트와의 소통을 처리합니다. 클라이언트로부터 메시지를 수신하고, 그 메시지를 로그에 기록한 다음, 다른 모든 클라이언트에게 그 메시지를 전송합니다.
+
+- 오류 처리:
+
+  - **예외 처리**: 대부분의 네트워크 연산은 예외를 발생시킬 수 있습니다. 클라이언트와의 통신 중 발생하는 오류를 잡아 처리하며, 문제가 발생한 클라이언트의 연결을 종료합니다.
+
+- 서버 종료 처리:
+
+  - 서버 종료: **toggle_server** 함수 내에서, 서버가 이미 실행 중일 경우, 서버 소켓을 닫아 서버를 종료합니다.
+  
+  - 안전한 종료: **closeEvent** 함수는 창이 닫힐 때 서버의 연결을 안전하게 종료하기 위해 정의되었습니다.
 
 
 
