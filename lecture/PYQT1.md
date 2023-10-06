@@ -62,10 +62,27 @@ PyQt5 환경 설정 및 설치
     https://www.python.org/ftp/python/2.7.17/python-2.7.17.amd64.msi
 
     위의 버전을 사용하는 이유: 젯슨 나노의 파이썬 버전과 동일
+3. python2 환경변수 설정
+   검색에서 고급 시스템 설정 보기 실행
 
+   시스템 변수에서 Path 더블클릭
+
+   새로만들기 후
+   C:\Python27\Scripts
+   C:\Python27
+   각각 추가
+
+   cmd를 관리자 권한으로 실행 뒤
+   ```bash
+   mklink C:\Windows\python2.exe C:\Python27\python.exe
+   mklink C:\Windows\pip2.exe C:\Python27\Scripts\pip.exe
+   ```
+   입력
+
+   
 3. pip를 업그레이드 합니다.
 
-    cmd 창을 열고
+    cmd 창을 관리자 권한으로 열고
     ```bash
     pip2 install --upgrade pip
     ```
