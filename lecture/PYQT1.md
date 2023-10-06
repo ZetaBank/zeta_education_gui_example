@@ -68,8 +68,10 @@ PyQt5 환경 설정 및 설치
    시스템 변수에서 Path 더블클릭
 
    새로만들기 후
+   ```
    C:\Python27\Scripts
    C:\Python27
+   ```
    각각 추가
 
    cmd를 관리자 권한으로 실행 뒤
